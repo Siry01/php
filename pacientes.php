@@ -47,7 +47,7 @@ if(mysqli_num_rows($resultado)>0){
       <td class="border border-gray-300 dark:border-black  bg-pink-300  text-white "><?php echo $fila ["Cedula"];?></dh>
       <td class="border border-gray-300 dark:border-black  bg-pink-300  text-white "><?php echo $fila ["Edad"];?></td>
       <td class="border border-gray-300 dark:border-black  bg-pink-300  text-white "><?php echo $fila ["Sexo"];?></td>
-      <td class="border border-gray-300 dark:border-black  bg-pink-300  text-white "><a href= "editar_paciente.php?id=<?php echo $fila ['ID_Paciente'];?>">Editar </a></td>
+      <td class="border border-gray-300 dark:border-black  bg-pink-300  text-white "><a href= "editar_paciente.php?ID_Paciente=<?php echo $fila ['ID_Paciente'];?>">Editar </a></td>
       <td class="border border-gray-300 dark:border-black  bg-pink-300  text-white "><a href= "editar_paciente.php?id=<?php echo $fila ['ID_Paciente'];?>">Eliminar </a></td>
 
     </tr>
