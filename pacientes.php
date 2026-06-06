@@ -14,6 +14,12 @@ require_once ("conex.php");
 </head>
 <body class="bg-gray-50 p-6">
 
+<?php if (iseet ($_GET['mensaje']) && $_GET['mensaje'] == 'eliminado'):?>
+  <div class="border border-gray-300 dark:border-black bg-pink-300 text-white p-2">
+    ¡Paciente eliminado con exito!
+  </div>
+  <?php endif;?>
+
 <?php
 $sql = "select * from paciente";
 $resultado = $conn->query($sql);
