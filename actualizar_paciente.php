@@ -3,21 +3,26 @@ include 'conex.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+   
     $id = isset($_POST['id']) ? trim($_POST['id']) : null;
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : null;
-    $apellido = isset($_POST['apellido']) ? trim($_POST['apellido']) : null; 
-    $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : null;
-    $edad = isset($_POST['edad']) ? trim($_POST['edad']) : null;
-    $sexo = isset($_POST['sexo']) ? trim($_POST['sexo']) : null;
+    $apellido = isset($_POST['Apellido']) ? trim($_POST['Apellido']) : null; 
+    $cedula = isset($_POST['Cedula']) ? trim($_POST['Cedula']) : null;
+    $edad = isset($_POST['Edad']) ? trim($_POST['Edad']) : null;
+    $sexo = isset($_POST['Sexo']) ? trim($_POST['Sexo']) : null;
 
-    if (!empty($id) && !empty($nombre)) {
+
+    if (isset($_POST['id']) && $_POST['id'] !== '' && !empty($nombre)) {
 
         $sql = "UPDATE paciente SET Nombre = ?, Apellido = ?, Cedula = ?, Edad = ?, Sexo = ? WHERE ID_Paciente = ?";
 
         if ($stmt = $conn->prepare($sql)) {
 
           
-            $stmt->bind_param("ssiisi", $nombre, $apellido, $cedula, $edad, $sexo, $id);
+            $id_int = (int)$id;
+            $edad_int = (int)$edad;
+
+            $stmt->bind_param("ssissi", $nombre, $apellido, $cedula, $edad_int, $sexo, $id_int);
 
             if ($stmt->execute()) {
                 header("Location: pacientes.php?mensaje=actualizado");
@@ -37,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 } else {
-  
-  echo "Acceso no valido. Se esperaba una peticion POST.";
+  echo "Acceso no válido. Se esperaba una petición POST.";
 }
 ?>
